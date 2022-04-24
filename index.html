@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: linear-gradient(to right, red, black);
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        h2{
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #container{
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            padding: 10px;
+            border-radius:10px;
+        }
+
+        table{
+            margin: auto;
+        }
+
+        .botao{
+            width:60px;
+            height: 60px;
+            border: none;
+            margin: 0.5px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: white ;
+        }
+
+        .botao:hover{
+            background-color: rgba(0, 0, 0, 0.192);
+            color: white;
+        }
+
+        .color{
+            background-color: rgba(0, 0, 0, 1);
+            color: white;
+        }
+
+        .color:hover{
+            background-color: white;
+            color: black;
+        }
+
+        #resultado{
+            background-color: white;
+            color: black;
+            text-align: right;
+            font-size: 1.5rem;
+            margin-bottom: 7px;
+            height: 30px;
+            padding: 5px 5px 0 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minha Calculadora</h1>
+    <div id="container">
+        <h2>Calculadora</h2>
+        <p id="resultado"></p>
+        <div id="calculadora">
+            <table>
+                <tr>
+                    <td><button class="botao color" onclick="clean('')">C</button></td>
+                    <td><button class="botao color" onclick="back('')"><</button></td>
+                    <td><button class="botao color" onclick="insert('/')">/</button></td>
+                    <td><button class="botao color" onclick="insert('*')">X</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao color" onclick="insert('-')">-</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao color" onclick="insert('+')">+</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao color" onclick="calcular()" style="height: 125px;">=</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button class="botao" onclick="insert('0')" style="width: 99.5%;">0</button></td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function insert(num){
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero+num;
+        }
+
+        function clean(){
+            document.getElementById('resultado').innerHTML = '';
+        }
+
+        function back(){
+            var numer = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numer.substring(0,numer.length -1);
+        }
+
+        function calcular(){
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado){
+                document.getElementById('resultado').innerHTML=eval(resultado);
+            }else{
+                document.getElementById('resultado').innerHTML="";
+                alert('Por favor digite algo!')
+            }
+        }
+    </script>
+</body>
+</html>
